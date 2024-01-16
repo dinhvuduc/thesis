@@ -1,0 +1,24 @@
+
+<app-header></app-header>
+<div class="flex flex-col items-center mx-auto space-y-8 w-[var(--landing-page-width)]">
+ <p class="bg-black p-1  text-white"> Generate your workout today </p>
+ <app-step [number]="1">WORKOUT TYPE</app-step>
+ <div class="flex items-center w-full"> 
+  <button class="workout-btn"> BRO SPLIT</button>
+  <button class="workout-btn">INDIVIDUAL</button>
+  <button class="workout-btn">UPPER LOWER</button>
+  <button class="workout-btn">BODYBUILDER SPLIT</button>
+ </div>
+ <app-step [number]="2">MUSCLE GROUP</app-step>
+ <app-step [number]="3">GOAL & OBJECTIVES</app-step>
+ <div class="flex flex-col items-center w-full space-y-2"> 
+  <button class="workout-btn w-full"> STRENGTH & POWER</button>
+  <button class="workout-btn w-full">GROWTH & HYPERTROPHY</button>
+  <button class="workout-btn w-full">CARDIOVASCULAR & ENDURANCE</button>
+  
+ </div> 
+
+ <div> <button class="border-black border-2 text-5xl p-1 hover:bg-gray-700 hover:text-white transition-all">GENERATE</button></div>
+</div>
+
+<app-footer></app-footer>
