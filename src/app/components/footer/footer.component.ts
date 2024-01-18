@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
-import { remixFacebookCircleFill, remixInstagramFill, remixMailFill, remixTwitterFill } from '@ng-icons/remixicon';
+import { remixCopyrightLine, remixFacebookCircleFill, remixInstagramFill, remixMailFill, remixTwitterFill } from '@ng-icons/remixicon';
 
 @Component({
   selector: 'app-footer',
@@ -8,7 +8,7 @@ import { remixFacebookCircleFill, remixInstagramFill, remixMailFill, remixTwitte
   imports: [NgIconComponent],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
-  viewProviders:[provideIcons({remixFacebookCircleFill,remixInstagramFill,remixMailFill,remixTwitterFill})]
+  viewProviders:[provideIcons({remixFacebookCircleFill,remixInstagramFill,remixMailFill,remixTwitterFill,remixCopyrightLine})]
 })
 export class FooterComponent {
 
