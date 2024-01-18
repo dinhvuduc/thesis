@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
-import { remixAccountCircleLine } from '@ng-icons/remixicon';
+import {remixAccountCircleFill } from '@ng-icons/remixicon';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [NgIconComponent],
-  viewProviders:[provideIcons({remixAccountCircleLine,})],
+  viewProviders:[provideIcons({remixAccountCircleFill})],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
