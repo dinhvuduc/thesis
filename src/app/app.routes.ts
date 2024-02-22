@@ -20,7 +20,28 @@ export const routes: Routes = [
   path: '404',
   loadComponent: () => import('./Pages/not-found/not-found.component').then( (c) =>c.NotFoundComponent),
  },
+ 
+ { 
+  path: 'warm-up',
+  loadComponent: () => import('./Pages/warm-up/warm-up.component').then( (c) =>c.WarmUpComponent),
+ },
+ 
+ { 
+  path: 'tracking',
+  loadComponent: () => import('./Pages/tracking/tracking.component').then( (c) =>c.TrackingComponent),
+ },
+ 
+ { 
+  path: 'coaching',
+  loadComponent: () => import('./Pages/coaching/coaching.component').then( (c) =>c.CoachingComponent),
+ },
 
+ { 
+  path: 'landing',
+  loadComponent: () => import('./Pages/landing/landing.component').then( (c) =>c.LandingPageComponent),
+ },
+
+ 
  {
   path: '**',
   redirectTo:'404'
