@@ -1,1 +1,10 @@
-<button [type]="type" [ngClass]="btnClass" [class]="btnType ==='transparent' ? 'w-full py-2 text-xl border border-black my-4 hover:bg-black hover:text-white transition-all' : 'h-[60px] flex-grow bg-black text-white hover:bg-gray-700 transition-all' "><ng-content/></button>
+<button 
+[type]="type" 
+[ngClass]=" [btnClass,
+btnType === 'transparent'
+  ? 'border border-black hover:bg-black hover:text-white'
+  : 'bg-black text-white hover:bg-gray-700'
+]" 
+class="w-full py-2 text-xl h-[70px] flex-grow my-4 transition-all">
+<ng-content/>
+</button>

@@ -3,19 +3,23 @@
 <div class="flex flex-col items-center mx-auto space-y-8 w-[var(--landing-page-width)]">
  <p class="bg-black mt-10 px-7 py-2 text-white text-l ">Generate your workout today!</p>
  <app-step [number]="1">WORKOUT TYPE</app-step>
- <div class="flex items-center w-full">
-  <app-button btnType="black">Individual</app-button>
-  <app-button btnType="black">Bro split</app-button>
-  <app-button btnType="black">Upper lower</app-button>
-  <app-button btnType="black">Bodybuilder split</app-button>
+ <div class="flex items-center w-full  p-1">
+  <app-button 
+  [btnType]="checkSelectedWorkoutType('individual')" 
+  (click)="onClick('individual')" >Individual</app-button>
+  <app-button (click)="onClick('broSplit')" [btnType]="checkSelectedWorkoutType('broSplit')">Bro split</app-button>
+  <app-button (click)="onClick('upperLower')" [btnType]="checkSelectedWorkoutType('upperLower')">Upper lower</app-button>
+  <app-button (click)="onClick('bodyBuilder')" [btnType]="checkSelectedWorkoutType('bodyBuilder')">Bodybuilder split</app-button>
 </div>
- <app-step [number]="2">MUSCLE GROUP</app-step>
- <app-step [number]="3">GOAL & OBJECTIVES</app-step>
+  <app-step [number]="2">MUSCLE GROUP</app-step>
+  <app-select [options]="muscleGroups" />
+
+  <app-step [number]="3">GOAL & OBJECTIVES</app-step>
  <div class="flex flex-col items-center w-full space-y-2 btn-vertical-container"> 
 
-  <app-button btnType="black" btnClass="workout-btn w-full">STRENGTH & POWER</app-button>
-  <app-button btnType="black" btnClass="workout-btn w-full mt-2">GROWTH & HYPERTROPH</app-button>
-  <app-button btnType="black" btnClass="workout-btn w-full mt-2">CARDIOVASCULAR & ENDURANCE</app-button>
+  <app-button (click)="onselectgoal('strength')"  btnClass="workout-btn w-full"[btnType]="checkSelectedGoal('strength')">STRENGTH & POWER</app-button>
+  <app-button (click)="onselectgoal('growth')" btnType="black" btnClass="workout-btn w-full mt-2"[btnType]="checkSelectedGoal('growth')">GROWTH & HYPERTROPH</app-button>
+  <app-button (click)="onselectgoal('cardiovascular')" btnType="black" btnClass="workout-btn w-full mt-2"[btnType]="checkSelectedGoal('cardiovascular')">CARDIOVASCULAR & ENDURANCE</app-button>
   
  </div> 
 
