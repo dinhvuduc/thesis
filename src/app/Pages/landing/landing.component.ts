@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ViewChildren } from '@angular/core';
 import { StepComponent } from '../../components/step/step.component';
 import { ButtonComponent } from '../../components/button/button.component';
 import { SelectComponent } from '../../components/select/select.component';
@@ -7,10 +7,10 @@ type WorkoutType = 'broSplit' | 'individual' | 'upperLower' | 'bodyBuilder'
 type WorkoutGoal = 'strength' | 'cardiovascular' | 'growth'
 
 const MUSCLE_GROUPS: Record<WorkoutType, string[]> = {
-  individual: ['biceps', 'triceps', 'chest'],
-  broSplit: ['push', 'pull', 'legs'],
-  upperLower: ['upper', 'lower'],
-  bodyBuilder: ['chest', 'back', 'shoulder'],
+  individual: ['Biceps', 'Triceps', 'Chest'],
+  broSplit: ['Push', 'Pull', 'Legs'],
+  upperLower: ['Upper', 'Lower'],
+  bodyBuilder: ['Chest', 'Back', 'Shoulder'],
 };
 @Component({
   selector: 'app-landing-page',
@@ -27,8 +27,13 @@ export class LandingPageComponent {
   selectedWorkoutType: WorkoutType | undefined ; 
   selectedGoal: WorkoutGoal | undefined;
 
+  @ViewChild('muscleGroupSelect') muscleGroupSelect: SelectComponent | undefined;
+  
   onClick(workoutType: WorkoutType) {
     this.selectedWorkoutType = workoutType;
+
+    this.muscleGroupSelect?.onReset();
+
   }
 
   checkSelectedWorkoutType(workoutType:WorkoutType){

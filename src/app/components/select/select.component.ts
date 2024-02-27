@@ -15,5 +15,10 @@ import { FormsModule } from '@angular/forms';
 })
 export class SelectComponent { 
   @Input() options: string[] = [];
-  value="da"
+  value=""
+  onChange: any | undefined;
+  onReset(){
+
+    this.value = "";
+  }
 }

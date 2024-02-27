@@ -12,7 +12,7 @@
   <app-button (click)="onClick('bodyBuilder')" [btnType]="checkSelectedWorkoutType('bodyBuilder')">Bodybuilder split</app-button>
 </div>
   <app-step [number]="2">MUSCLE GROUP</app-step>
-  <app-select [options]="muscleGroups" />
+  <app-select #muscleGroupSelect [options]="muscleGroups" />
 
   <app-step [number]="3">GOAL & OBJECTIVES</app-step>
  <div class="flex flex-col items-center w-full space-y-2 btn-vertical-container"> 
