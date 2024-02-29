@@ -1,9 +1,13 @@
 import { HttpClient } from "@angular/common/http";
 import { Exercise } from "../types/exercise";
+import { Injectable } from "@angular/core";
 
+@Injectable({
+  providedIn: 'root',
+}) 
 export class ExerciseService{
  constructor(private readonly http: HttpClient){}
- generateExercise(target:string, goal:string): Exercise[]{
+ generateExercises(target:string, goal:string): Exercise[]{
 // this.http.get('/exercise')
 return[
  {
