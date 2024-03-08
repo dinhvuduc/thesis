@@ -61,16 +61,16 @@
   </div>
   <div class="flex flex-col space-y-4 bg-blue-950 text-white p-4" *ngFor="let exercise of generatedExercises; let index = index">
     <div class="flex items-center justify-between">
-      <span>{{index }}</span>
-      <span class="text-lg font-medium">{{ exercise.name }}</span>
-      <span>{{exercise.type}}</span>
+      <span class="text-5xl text-gray-400" >{{index }}</span>
+      <span class="text-lg font-large">{{ exercise.name }}</span>
+      <span class="text-gray-400">{{exercise.type}}</span>
     </div>
     
-    <span>{{exercise.targets.join(',')}}</span>
+    <span class="text-gray-400">{{exercise.targets.join(',')}}</span>
 
     <div class="flex items-center justify-between">
-<span>Reps: {{exercise.reps}}</span>
-<span>Sets: {{exercise.sets}}</span>
+<span class="text-gray-400">Reps: {{exercise.reps}}</span>
+<span class="text-gray-400">Sets: {{exercise.sets}}</span>
     </div>
 
     <div class="flex flex-col">
