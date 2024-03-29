@@ -1,22 +1,20 @@
+<div
+  class="w-screen h-[400px] w-[400px] flex flex-col items-center justify-center mx-auto"
+>
+  <h1 class="text-3xl font-semibold">SIGN IN</h1>
 
- <div class="w-screen h-[400px] w-[400px] flex flex-col items-center justify-center mx-auto">
- 
+  <form [formGroup]="form" (submit)="onSubmit()">
+    <app-input placeholder="Email" formControlName="email"></app-input>
+    
+    <p class="text-red-500" *ngIf="f['email']?.touched && f['email']?.hasError('required')"> Email is required </p>
+    <p class="text-red-500" *ngIf="f['email']?.hasError('email')"> Email is invalid </p>
+    
+    <app-input placeholder="Password" type="password" formControlName="password"></app-input>
 
-  <h1 class="text-3xl font-semibold"> SIGN IN</h1>
-  
-  <form action="">
-   <app-input placeholder="Email"></app-input>
-   <app-input placeholder="Password" type="password"></app-input>
- 
-   
-   <app-button type="submit" >Submit</app-button>
+    <app-button type="submit">Submit</app-button>
   </form>
-  
-  <a routerLink="/sign-up" class="text-sm underline  w-full text-center"> Sign Up</a>
- 
+
+  <a routerLink="/sign-up" class="text-sm underline w-full text-center">
+    Sign Up</a
+  >
 </div>
-
-
-
-
-

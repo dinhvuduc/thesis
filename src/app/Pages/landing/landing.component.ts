@@ -86,6 +86,13 @@ private readonly fb: FormBuilder,
   onGenerate() {
     // this.form.get('target')?.setValue('push');
     console.log(this.form.value)
-    this.generatedExercises = this.excerciseService.generateExercises(this.form.value.target, this.form.value.goal);
+   this.excerciseService.generateExercises(this.form.value.target, this.form.value.goal).subscribe({
+    next:(exercise) =>{
+
+      
+      this.generatedExercises = exercise
+    }
+    }
+   );
   }
 }

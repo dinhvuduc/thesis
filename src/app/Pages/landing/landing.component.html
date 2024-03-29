@@ -1,5 +1,5 @@
 <div
-  class="flex flex-col items-center mx-auto space-y-8 w-[var(--landing-page-width)]"
+  class="flex flex-col items-center mx-auto space-y-8 w-[var(--landing-page-width)] "
 >
   <p class="bg-black mt-10 px-7 py-2 text-white text-l">
     Generate your workout today!
@@ -59,21 +59,26 @@
   <div>
     <app-button btnClass="mt-6 w-max px-7 py-3 !text-4xl" (click)="onGenerate()">GENERATE</app-button>
   </div>
-  <div class="flex flex-col space-y-4 bg-blue-950 text-white p-4" *ngFor="let exercise of generatedExercises; let index = index">
+  <div class="flex flex-col space-y-4 bg-black text-white p-4 w-[800px] rounded-lg " *ngFor="let exercise of generatedExercises; let index = index">
     <div class="flex items-center justify-between">
-      <span class="text-5xl text-gray-400" >{{index }}</span>
-      <span class="text-lg font-large">{{ exercise.name }}</span>
-      <span class="text-gray-400">{{exercise.type}}</span>
+      <span class="text-5xl font-bold text-gray-400" >{{index }}</span>
+      <span class="text-lg font-large ">{{ exercise.name }}</span>
+      <span class="text-gray-400 ">{{exercise.type}}</span>
     </div>
-    
-    <span class="text-gray-400">{{exercise.targets.join(',')}}</span>
-
     <div class="flex items-center justify-between">
-<span class="text-gray-400">Reps: {{exercise.reps}}</span>
-<span class="text-gray-400">Sets: {{exercise.sets}}</span>
+    <span class="text-gray-400 border border-blue-950 p-3  ">{{exercise.targets.join(',')}}</span>
+    </div>
+    <div class="flex items-center justify-between">
+<div class="border border-blue-950 p-3">
+  <span class="text-gray-400 ">Reps: </span><span>{{exercise.reps}} </span>
+</div>
+
+<div class="text-gray-400 border border-blue-950 p-3">Sets: 
+ <span class="text-white"> {{exercise.sets}}  </span> 
+</div>
     </div>
 
-    <div class="flex flex-col">
+    <div class="flex flex-col bg-gray-800 border border-blue-950 p-3">
       <p *ngFor="let instruction of exercise.instructions">
         {{instruction}}
       </p>
