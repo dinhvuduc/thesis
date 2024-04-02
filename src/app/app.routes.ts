@@ -41,6 +41,24 @@ export const routes: Routes = [
   loadComponent: () => import('./Pages/landing/landing.component').then( (c) =>c.LandingPageComponent),
  },
 
+ {
+  path:'admin',
+  loadComponent:() => import('./Pages/admin/admin.component').then ((c)=>c.AdminPageComponent),
+  children:[
+   {
+    path:'exercise',
+  loadComponent:() => import('./Pages/admin/exercises/exercise.component').then ((c)=>c.ExercisePageComponet),
+   },
+   {
+    path:'users',
+  loadComponent:() => import('./Pages/admin/exercises/exercise.component').then ((c)=>c.ExercisePageComponet),
+   },
+   {
+    path:'coaches',
+  loadComponent:() => import('./Pages/admin/exercises/exercise.component').then ((c)=>c.ExercisePageComponet),
+   },
+  ]
+ },
  
  {
   path: '**',

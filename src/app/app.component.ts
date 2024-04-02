@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { LayoutComponent } from './components/layout/layout.component';
+import { PopupComponent } from './components/poppup/popup.component';
 
 
 @Component({
@@ -10,7 +11,8 @@ import { LayoutComponent } from './components/layout/layout.component';
   imports: [
     CommonModule, 
     RouterOutlet,
-    LayoutComponent
+    LayoutComponent,
+    PopupComponent
     ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

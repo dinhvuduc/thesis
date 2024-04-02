@@ -6,3 +6,11 @@ export interface Exercise{
  sets:number;
  type:string;
 }
+
+export interface Exercise2{
+ _id:string;
+ name: string;
+ equipment: string;
+ target: string;
+ relatedTarget: string[];
+}
