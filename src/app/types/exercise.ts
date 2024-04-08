@@ -12,5 +12,5 @@ export interface Exercise2{
  name: string;
  equipment: string;
  target: string;
- relatedTarget: string[];
+ relatedTarget: string;
 }

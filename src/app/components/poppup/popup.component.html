@@ -1,5 +1,8 @@
-<div class="absolute top-0 left-0 w-screen h-screen bg-black/50"[style.display]="opened ? 'block' :'none' "(click) ="onClosePopup()">
- <div class="w-[300px] h-[400px] bg-white mx-auto mt-20">
-<button (click) ="onClosePopup()">close</button>
+<div class="absolute top-0 left-0 w-screen h-screen bg-black/50"[style.display]="opened ? 'block' :'none'" id="popup-overlay">
+ <div class="w-[600px] h-max bg-white mx-auto mt-20 flex flex-col px-6 py-4 space-y-4">
+<button (click) ="onClosePopup()" class="ml-auto">X</button>
+
+<ng-container [ngComponentOutlet]="Component"></ng-container>
  </div>
 </div>
+

@@ -1,20 +1,25 @@
-<h1>EXERCISE</h1>
 
-<button class="px-4 py-2 bg-gray-500 text-white hover:bg-gray-800" (click)="onNewExercises()" >Create new exercise</button>
-<table> 
- <tr>
-  <th>Index</th>
-  <th>Name</th>
-  <th>Equipment</th>
-  <th>Target</th>
-  <th>Related Target</th>
- </tr>
-
- <tr *ngFor="let exercises of exercises; let i = index">
-  <td>{{i+1}}</td>
-  <td>{{exercises.name}}</td>
-  <td>{{exercises.equipment  }}</td>
-  <td>{{exercises.target  }}</td>
-  <td>{{exercises.relatedTarget  }}</td>
- </tr>
-</table>
+<div class="flex flex-col items-center mt-7 mx-auto space-y-8 w-[var(--landing-page-width)]">
+ <app-button btnClass="px-4 py-2  !w-fit" btnType="black" (click)="onNewExercises()" >Create new exercise</app-button>
+ <table> 
+  <tr class="text-s px-5">
+   <th>Index</th>
+   <th>Name</th>
+   <th>Equipment</th>
+   <th>Target</th>
+   <th>Related Target</th>
+   <th>Actions</th>
+  </tr>
+  
+  <tr *ngFor="let exercises of exercises; let i = index">
+   <td>{{i+1}}</td>
+   <td>{{exercises.name}}</td>
+   <td>{{exercises.equipment  }}</td>
+   <td>{{exercises.target  }}</td>
+   <td>{{exercises.relatedTarget  }}</td>
+   <td>
+    <app-button btnClass="px-4 !h-10 !leading-none " (click)="onUpdate(exercises)">Update</app-button>
+   </td>
+  </tr>
+ </table>
+</div>

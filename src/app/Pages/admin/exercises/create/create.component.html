@@ -1,0 +1,22 @@
+<div class="text-l text-black">
+ 
+ <form [formGroup]="formGroup" (submit)="onSubmit()">
+  
+  <label>Name</label>
+  <app-input placeholder="Name" formControlName="name" />
+  
+  <label>Equipment</label>
+  <app-input placeholder="Equipment" formControlName="equipment" />
+  <label>Target</label>
+  <app-input placeholder="Target" formControlName="target" />
+  
+  <label>Related Targets</label>
+  <app-input placeholder="Related Targets" formControlName="relatedTarget" />
+  
+  <div class="flex mt-4">
+   <app-button (click)="onCancel()" type="button">Cancel</app-button>
+   <app-button btnType="black" type="submit">{{data ? 'Update' : 'Create'}}</app-button>
+  </div>
+  
+ </form>
+</div>

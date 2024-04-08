@@ -62,21 +62,26 @@ export class ExerciseService {
   }
   getExercise(): Observable<Exercise2[]>{ 
     // Goi enpoint tra ve danh sach exercises
-    return of([
-      {
-        _id: '1',
-        name: 'Push up',
-        equipment:'Bodyweight',
-        target:'Chest',
-        relatedTarget:['Triceps'],
-      },
-      {
-        _id: '2',
-        name: 'Pull up',
-        equipment:'Bodyweight',
-        target:'Back',
-        relatedTarget:['Biceps'],
-      }
-    ])
+    // return of([
+    //   {
+    //     _id: '1',
+    //     name: 'Push up',
+    //     equipment:'Bodyweight',
+    //     target:'Chest',
+    //     relatedTarget:['Triceps'],
+    //   },
+    //   {
+    //     _id: '2',
+    //     name: 'Pull up',
+    //     equipment:'Bodyweight',
+    //     target:'Back',
+    //     relatedTarget:['Biceps'],
+    //   },
+    // ]); data fake
+    return this.http.get<Exercise2[]>('http://localhost:3000/exercise');
+  }
+  createExercise(exercise:Exercise2){
+    return this.http.post('http://localhost:3000/exercise',exercise);
+
   }
 }
