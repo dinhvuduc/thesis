@@ -51,8 +51,8 @@ export class SignInComponent implements OnInit {
     this.authService
       .login(this.form.value.email, this.form.value.password)
       .subscribe({
-        next: (user) => {
-          console.log(user);
+        next: () => {
+          window.location.reload()  
         },
         error: (error) => {
           // bắt lỗi user not found
