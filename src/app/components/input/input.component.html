@@ -1,7 +1,14 @@
+<label *ngIf="showLabel">{{ placeholder }}</label>
+
 <input
   [placeholder]="placeholder"
   [type]="type"
   [value]="value"
   (change)="onChange($event)"
-  (blur)="(onTouch)"
+  (blur)="onTouch()"
+  [disabled]="disabled"
 />
+
+<p *ngIf="touched && isEmpty" class="text-red-500 text-sm">
+  {{ name }} is required
+</p>

@@ -1,22 +1,48 @@
 <div class="text-l text-black">
- 
- <form [formGroup]="formGroup" (submit)="onSubmit()">
+  <form [formGroup]="formGroup" (submit)="onSubmit()">
+    <label>Name</label>
+    <app-input placeholder="Name" formControlName="name" />
+
+    <label>Equipment</label>
+    <app-input placeholder="Equipment" formControlName="equipment" />
+    <label>Target</label>
+    <app-input placeholder="Target" formControlName="target" />
+
+    <label>Related Targets</label>
+    <app-input placeholder="Related Targets" formControlName="relatedTarget" />
+
+    <label>Video</label>
+    <app-input placeholder="Video URL" formControlName="video" />
+
+    <div formArrayName="instructions">
+      <label>Instructions</label>
+      <div
+        class="flex space-x-4"
+        *ngFor="let instruction of instructions; let index = index"
+      >
+        <app-input
+          placeholder="Instruction point"
+          [formControlName]="index"
+          class="grow"
+        />
   
-  <label>Name</label>
-  <app-input placeholder="Name" formControlName="name" />
-  
-  <label>Equipment</label>
-  <app-input placeholder="Equipment" formControlName="equipment" />
-  <label>Target</label>
-  <app-input placeholder="Target" formControlName="target" />
-  
-  <label>Related Targets</label>
-  <app-input placeholder="Related Targets" formControlName="relatedTarget" />
-  
-  <div class="flex mt-4">
-   <app-button (click)="onCancel()" type="button">Cancel</app-button>
-   <app-button btnType="black" type="submit">{{data ? 'Update' : 'Create'}}</app-button>
-  </div>
-  
- </form>
+        <app-button btnClass="!w-[50px] h-fit shrink grow-0 my-0 p-0 !bg-red-500" (click)="onDeleteInstructionPoint(index)"
+          >X</app-button
+        >
+      </div>
+      <app-button (click)="onAddInstruction()">Add instruction</app-button>
+    </div>
+
+    <div class="flex mt-4">
+      <app-button (click)="onCancel()" type="button">Cancel</app-button>
+      <app-button
+        btnType="black"
+        type="submit"
+        [disabled]="invalid || loading"
+        >{{ loading ? "Loading..." : data ? "Update" : "Create" }}</app-button
+      >
+    </div>
+  </form>
+
+  <p class="text-center text-red-500">{{ errorMessage }}</p>
 </div>

@@ -8,80 +8,46 @@ import { Observable, of } from 'rxjs';
 })
 export class ExerciseService {
   constructor(private readonly http: HttpClient) {}
-  generateExercises(target: string, goal: string) {
-    return this.http.post<Exercise[]>('http://localhost:3000/exercise', {
-      target,
-      goal,
-    });
-
-    // return[
-    //  {
-    //   name: 'Incline Smith Machine Press',
-    //   instructions: [
-    //     'Lying under a smith machine, ensure that the bar is aligned with your nipple height when it contacts your body. Keep elbows flared to a maximum of 45 degrees from your torso, hands slightly wider than shoulder width.',
-    //     'With a bench inclined between 30 and 45 degrees, hold the bar directly above your chest.',
-    //   ],
-    //   targets: ['Chest'],
-    //   reps: 2,
-    //   sets: 3,
-    //   type: 'abc',
-    // },
-    // {
-    //   name: 'Overhand Dumbbell Bentover Row',
-    //   instructions: [
-    //     'Begin standing, with your hands either side of your body holding the dumbbells. With a slight bend in your knees, hinge at your hips until your torso is angled 45 degrees forward. Imagine pulling your elbows back behind you to complete the row.',
-    //     'Perform this movement with a pronated grip, palms facing towards your feet.',
-    //   ],
-    //   targets: ['Chest'],
-    //   reps: 2,
-    //   sets: 3,
-    //   type: 'abc',
-    // },
-    // {
-    //   name: 'Deadlift',
-    //   instructions: [
-    //     'Standing with the bar over your feet, grip it overhand shoulder width apart, while ensuring you back remains straight throughout the entire exercise. Begin the lift by straightening your legs, dragging the bar up your shins, and as soon as the bar is above knee height, straighten your torso and lean back to heavy the bar off the ground. In reverse, you start standing tall, and with a micro bend in your knees, you hinge at the hips (maintaining a straight) back until the bar is over you knees, at which point your hips stop hinging and your knees start bending until the bar touches the ground. This exercise may also be done with a sumo stance.',
-    //   ],
-    //   targets: ['Chest'],
-    //   reps: 2,
-    //   sets: 3,
-    //   type: 'abc',
-    // },
-    // {
-    //   name: 'Neutral Grip Unilateral Seated Row',
-    //   instructions: [
-    //     'With the handle attachment, row your elbow back and pull your hand and the handle to your hip, and then release forwards.',
-    //     'Perform this movement with a neutral grip, palms facing towards your body.',
-    //   ],
-    //   targets: ['Chest'],
-    //   reps: 2,
-    //   sets: 3,
-    //   type: 'abc',
-    // },
-    // ];
+  generateExercises(
+    target: string,
+    goal: string,
+    age?: number,
+    weight?: number,
+    height?: number
+  ) {
+    return this.http.post<Exercise2[]>(
+      'http://localhost:3000/exercise/generate',
+      {
+        target,
+        goal,
+        age,
+        weight,
+        height,
+      }
+    );
   }
-  getExercise(): Observable<Exercise2[]>{ 
-    // Goi enpoint tra ve danh sach exercises
-    // return of([
-    //   {
-    //     _id: '1',
-    //     name: 'Push up',
-    //     equipment:'Bodyweight',
-    //     target:'Chest',
-    //     relatedTarget:['Triceps'],
-    //   },
-    //   {
-    //     _id: '2',
-    //     name: 'Pull up',
-    //     equipment:'Bodyweight',
-    //     target:'Back',
-    //     relatedTarget:['Biceps'],
-    //   },
-    // ]); data fake
+  getExercise(): Observable<Exercise2[]> {
     return this.http.get<Exercise2[]>('http://localhost:3000/exercise');
   }
-  createExercise(exercise:Exercise2){
-    return this.http.post('http://localhost:3000/exercise',exercise);
+  createExercise(exercise: Exercise2) {
+    return this.http.post('http://localhost:3000/exercise', exercise);
+  }
 
+  updateExercise(id: string, exercise: Exercise2) {
+    return this.http.put('http://localhost:3000/exercise/' + id, exercise);
+  }
+
+  deleteExercise(id: string) {
+    return this.http.delete('http://localhost:3000/exercise/' + id);
+  }
+
+  getTargets() {
+    return this.http.get<string[]>('http://localhost:3000/exercise/targets');
+  }
+
+  getExercisesByTarget(target: string) {
+    return this.http.get<Exercise2[]>('http://localhost:3000/exercise/target', {
+      params: { target },
+    });
   }
 }

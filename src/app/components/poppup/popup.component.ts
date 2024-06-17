@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { PopupService } from '../../services/popup.service';
-import { NgComponentOutlet } from '@angular/common';
+import { NgComponentOutlet, NgStyle } from '@angular/common';
 
 @Component({
   templateUrl: './popup.component.html',
   standalone: true,
   selector: 'app-popup',
-  imports: [NgComponentOutlet],
+  imports: [NgComponentOutlet, NgStyle],
 })
 export class PopupComponent implements OnInit {
   constructor(private readonly popupService: PopupService) {}
@@ -27,5 +27,9 @@ export class PopupComponent implements OnInit {
   }
   get Component() {
     return this.popupService.componentRef;
+  }
+
+  get width() {
+    return this.popupService.width;
   }
 }

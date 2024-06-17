@@ -28,6 +28,7 @@ import { NgIf } from '@angular/common';
 })
 export class SignInComponent implements OnInit {
   form: FormGroup;
+  error = '';
 
   constructor(
     private readonly fb: FormBuilder,
@@ -39,7 +40,7 @@ export class SignInComponent implements OnInit {
     });
   }
 
-  get f(){
+  get f() {
     return this.form.controls;
   }
 
@@ -52,12 +53,12 @@ export class SignInComponent implements OnInit {
       .login(this.form.value.email, this.form.value.password)
       .subscribe({
         next: () => {
-          window.location.reload()  
+          // window.location.reload()
         },
         error: (error) => {
           // bắt lỗi user not found
           // user enter wrong password
-          console.log(error);
+          this.error = error.error?.message ?? error.message;
         },
       });
   }

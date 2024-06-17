@@ -1,11 +1,12 @@
-<div
-  class="flex flex-col items-center mx-auto space-y-8 w-[var(--landing-page-width)] "
+<form
+  class="flex flex-col items-center mx-auto space-y-8 w-[var(--landing-page-width)]"
+  [formGroup]="form"
 >
-  <p class="bg-black mt-10 px-7 py-2 text-white text-l">
+  <p class="bg-black mt-10 px-7 py-2 text-white text-3xl">
     Generate your workout today!
   </p>
   <app-step [number]="1">WORKOUT TYPE</app-step>
-  <div class="flex items-center w-full p-1">
+  <div class="flex items-center w-full p-1 text-4xl">
     <app-button
       [btnType]="checkSelectedWorkoutType('individual')"
       (click)="onClick('individual')"
@@ -28,60 +29,59 @@
     >
   </div>
   <app-step [number]="2">MUSCLE GROUP</app-step>
-  <app-select #muscleGroupSelect [options]="muscleGroups" />
+  <app-select
+    #muscleGroupSelect
+    [options]="muscleGroups"
+    formControlName="target"
+  />
 
   <app-step [number]="3">GOAL & OBJECTIVES</app-step>
   <div
     class="flex flex-col items-center w-full space-y-2 btn-vertical-container"
   >
     <app-button
-      (click)="onSelectGoal('strength')"
+    
+      (click)="onSelectGoal('gain weight')"
       btnClass="workout-btn w-full"
-      [btnType]="checkSelectedGoal('strength')"
-      >STRENGTH & POWER</app-button
+      [btnType]="checkSelectedGoal('gain weight')"
+      >GAIN WEIGHT</app-button
     >
     <app-button
-      (click)="onSelectGoal('growth')"
+      (click)="onSelectGoal('lose weight')"
       btnType="black"
       btnClass="workout-btn w-full mt-2"
-      [btnType]="checkSelectedGoal('growth')"
-      >GROWTH & HYPERTROPH</app-button
-    >
-    <app-button
-      (click)="onSelectGoal('cardiovascular')"
-      btnType="black"
-      btnClass="workout-btn w-full mt-2"
-      [btnType]="checkSelectedGoal('cardiovascular')"
-      >CARDIOVASCULAR & ENDURANCE</app-button
+      [btnType]="checkSelectedGoal('lose weight')"
+      >LOSE WEIGHT</app-button
     >
   </div>
 
   <div>
-    <app-button btnClass="mt-6 w-max px-7 py-3 !text-4xl" (click)="onGenerate()">GENERATE</app-button>
+    <app-button btnClass="mt-6 w-max px-7 py-1 !text-5xl" (click)="onGenerate()"
+      >GENERATE</app-button
+    >
   </div>
-  <div class="flex flex-col space-y-4 bg-black text-white p-4 w-[800px] rounded-lg " *ngFor="let exercise of generatedExercises; let index = index">
-    <div class="flex items-center justify-between">
-      <span class="text-5xl font-bold text-gray-400" >{{index }}</span>
-      <span class="text-lg font-large ">{{ exercise.name }}</span>
-      <span class="text-gray-400 ">{{exercise.type}}</span>
-    </div>
-    <div class="flex items-center justify-between">
-    <span class="text-gray-400 border border-blue-950 p-3  ">{{exercise.targets.join(',')}}</span>
-    </div>
-    <div class="flex items-center justify-between">
-<div class="border border-blue-950 p-3">
-  <span class="text-gray-400 ">Reps: </span><span>{{exercise.reps}} </span>
-</div>
 
-<div class="text-gray-400 border border-blue-950 p-3">Sets: 
- <span class="text-white"> {{exercise.sets}}  </span> 
-</div>
+  <ng-container *ngIf="!generating; else loadingTemplate">
+    <div class="!w-full flex flex-col space-y-4">
+      <app-exercise
+        *ngFor="let exercise of generatedExercises; let index = index"
+        [index]="index"
+        [exercise]="exercise"
+      />
     </div>
 
-    <div class="flex flex-col bg-gray-800 border border-blue-950 p-3">
-      <p *ngFor="let instruction of exercise.instructions">
-        {{instruction}}
-      </p>
-    </div>
-  </div>
-</div>
+    <app-button
+      *ngIf="generatedExercises.length"
+      type="button"
+      (click)="onTrackExercises()"
+    >
+      Start
+    </app-button>
+  </ng-container>
+
+  <p class="text-red-500 text-center">{{ error }}</p>
+</form>
+
+<ng-template #loadingTemplate>
+  <p>Generating...</p>
+</ng-template>

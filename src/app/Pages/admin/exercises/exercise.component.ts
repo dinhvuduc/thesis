@@ -5,11 +5,13 @@ import { Exercise2 } from '../../../types/exercise';
 import { PopupService } from '../../../services/popup.service';
 import { CreateExerciseComponent } from './create/create.component';
 import { ButtonComponent } from '../../../components/button/button.component';
+import { DeleteExerciseComponent } from './delete/delete.component';
+import { take } from 'rxjs';
 
 @Component({
   templateUrl: './exercise.component.html',
   standalone: true,
-  imports: [NgFor,ButtonComponent],
+  imports: [NgFor, ButtonComponent],
 })
 export class ExercisePageComponet implements OnInit {
   exercises: Exercise2[] = [];
@@ -22,6 +24,12 @@ export class ExercisePageComponet implements OnInit {
     this.exerciseService.getExercise().subscribe((exercises) => {
       this.exercises = exercises;
     });
+
+    this.popupService.closing$.subscribe(() => {
+      this.exerciseService.getExercise().subscribe((exercises) => {
+        this.exercises = exercises;
+      });
+    });
   }
   onNewExercises() {
     // const Component = import('./create/create.component').then(
@@ -30,16 +38,20 @@ export class ExercisePageComponet implements OnInit {
     this.popupService.opened = !this.popupService.opened;
     this.popupService.componentRef = CreateExerciseComponent;
   }
-  onUpdate(exercise:Exercise2){
+  onUpdate(exercise: Exercise2) {
     this.popupService.opened = true;
     this.popupService.componentRef = CreateExerciseComponent;
 
-    this.popupService.data = {
-      name: exercise.name,
-      target: exercise.target,
-      equipment: exercise.equipment,
-      relatedTarget: exercise.relatedTarget,
+    this.popupService.data = exercise;
+  }
 
-    }
+  onDelete(exercise: Exercise2) {
+    this.popupService.opened = true;
+    this.popupService.componentRef = DeleteExerciseComponent;
+
+    this.popupService.data = {
+      _id: exercise._id,
+      name: exercise.name,
+    };
   }
 }

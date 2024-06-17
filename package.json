@@ -20,6 +20,12 @@
     "@angular/router": "^17.0.0",
     "@ng-icons/core": "^26.3.0",
     "@ng-icons/remixicon": "^26.3.0",
+    "angular-calendar": "^0.31.1",
+    "chart.js": "^4.4.3",
+    "date-fns": "^3.6.0",
+    "dayjs": "^1.11.11",
+    "ng2-charts": "^6.0.1",
+    "primeng": "^17.18.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"

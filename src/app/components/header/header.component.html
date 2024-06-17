@@ -1,30 +1,29 @@
 <div class="flex items-center justify-between">
- <a href="/">
-  <img src="/assets/logo_white.jpg" alt="logo" class="h-[80px]"/>
-  <a class="flex items-center justify-center font-mono text-xl tracking-widest   "> GYMDUCK </a>
- </a>
- <div class="flex items-center space-x-10  ">
- 
-  <a class="nav-item" routerLink="/landing"   >
-   WORKOUT
+  <a href="/">
+    <img src="/assets/logo_white.jpg" alt="logo" class="h-[80px]" />
+    <a
+      class="flex items-center justify-center font-mono text-xl tracking-widest"
+    >
+      GYMDUCK
+    </a>
   </a>
- 
-  <a class="nav-item" routerLink="/warm-up"   >
-   WARM UP
-  </a>
- 
-  <a class="nav-item" routerLink="/tracking"   >
-   TRACKING
-  </a>
- 
-  <a class="nav-item" routerLink="/coaching"   >
-   COACHING
-  </a>
-  
-    
- <a routerLink="/sign-in">
- <ng-icon name="remixAccountCircleFill" size="30px"></ng-icon>
- </a>
+  <div class="flex items-center space-x-10">
+    <a class="nav-item" routerLink="/admin" *ngIf="isAdmin"> ADMIN </a>
 
- </div>
+    <a class="nav-item" routerLink="/landing"> WORKOUT </a>
+
+    <!-- <a class="nav-item" routerLink="/warm-up"> WARM UP </a> -->
+
+    <a class="nav-item" routerLink="/tracking"> TRACKING </a>
+
+    <a class="nav-item" routerLink="/progress" *ngIf="user"> PROGRESS </a>
+
+    <!-- <a class="nav-item" routerLink="/coaching"> COACHING </a>
+     -->
+    <button #buttonEle (click)="onOpenMenu()" *ngIf="user">
+      <ng-icon name="remixAccountCircleFill" size="30px"></ng-icon>
+    </button>
+
+    <a class="nav-item" routerLink="/sign-in" *ngIf="!user">SIGN IN</a>
+  </div>
 </div>

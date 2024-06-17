@@ -1,0 +1,9 @@
+<h1>Congratulation!</h1>
+<p>You have finished today session</p>
+
+<app-button
+  routerLink="/progress"
+  [queryParams]="{ open: true }"
+  (click)="onClose()"
+  >To statistic</app-button
+>

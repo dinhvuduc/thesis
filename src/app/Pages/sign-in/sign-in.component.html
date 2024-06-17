@@ -1,15 +1,29 @@
 <div
-  class="w-screen h-[400px] w-[400px] flex flex-col items-center justify-center mx-auto"
+  class="h-[400px] w-[400px] flex flex-col items-center justify-center mx-auto"
 >
   <h1 class="text-3xl font-semibold">SIGN IN</h1>
 
-  <form [formGroup]="form" (submit)="onSubmit()">
+  <form [formGroup]="form" (submit)="onSubmit()" class="w-full">
     <app-input placeholder="Email" formControlName="email"></app-input>
-    
-    <p class="text-red-500" *ngIf="f['email']?.touched && f['email']?.hasError('required')"> Email is required </p>
-    <p class="text-red-500" *ngIf="f['email']?.hasError('email')"> Email is invalid </p>
-    
-    <app-input placeholder="Password" type="password" formControlName="password"></app-input>
+
+    <!-- <p
+      class="text-red-500"
+      *ngIf="f['email']?.touched && f['email']?.hasError('required')"
+    >
+      Email is required
+    </p>
+    <p
+      class="text-red-500"
+      *ngIf="f['email']?.touched && f['email']?.hasError('email')"
+    >
+      Email is invalid
+    </p> -->
+
+    <app-input
+      placeholder="Password"
+      type="password"
+      formControlName="password"
+    ></app-input>
 
     <app-button type="submit">Submit</app-button>
   </form>
@@ -17,4 +31,9 @@
   <a routerLink="/sign-up" class="text-sm underline w-full text-center">
     Sign Up</a
   >
+  <a routerLink="/reset-password" class="text-sm underline w-full text-center mt-8">
+    Reset password</a
+  >
 </div>
+
+<p class="text-red-500 text-center">{{ error }}</p>

@@ -15,4 +15,5 @@ export class ButtonComponent {
   @Input() type: string='button';
   @Input() btnClass: string='';
   @Input() btnType: 'black' | 'transparent' = 'transparent'
+  @Input() disabled = false;
  }

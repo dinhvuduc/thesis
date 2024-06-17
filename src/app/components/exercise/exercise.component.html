@@ -1,0 +1,115 @@
+<div
+  class="flex flex-col space-y-4 bg-black text-white p-4 rounded-lg w-full"
+  *ngIf="exercise"
+  [ngClass]="selected ? 'border-4 rounded-lg border-green-500' : ''"
+>
+  <div
+    class="flex flex-col space-y-4"
+    [tabIndex]="clickable ? 0 : -1"
+    (click)="onChooseExercise()"
+    [ngClass]="clickable ? 'cursor-pointer' : ''"
+  >
+    <div class="flex w-full">
+      <div class="flex items-center justify-between grow ">
+        <div class="flex items-center" >
+          <span class="text-5xl font-bold text-gray-400">{{ index + 1 }}</span>
+          <span class="text-3xl font-bold p-3">{{ exercise.name }}</span>
+        </div>
+        <span class="text-gray-400"
+          >Equipment: 
+          <span class="text-white font-bold"> 
+            {{ exercise.equipment | uppercase }}
+          </span> 
+          </span
+        >
+      </div>
+
+      <button class="ml-4" (click)="onOpenMenu($event)" *ngIf="options.length">
+        <ng-icon name="remixMenuLine" size="30" />
+      </button>
+    </div>
+    
+    <div class="flex flex-col items-left p-2 ">
+      <span class="text-gray-400  ">Muscle Group:</span><span class="!text-2xl !font-bold">{{ exercise.target }} </span>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <div class=" rounded-md border-2  border border-gray-600 p-4">
+        <span class="text-gray-400">Reps: </span><span>{{ reps }} </span>
+      </div>
+
+      <div class=" text-gray-400 rounded-md border-2   border border-gray-600 p-4">
+        Sets:
+        <span class="text-white">{{ sets }} </span>
+      </div>
+    </div>
+  </div>
+
+  <app-expansion label="Description" [opened]="openExpansion">
+    <div class="flex flex-col bg-gray-800 border border-blue-950 p-3">
+      <p *ngFor="let instruction of exercise.instructions">
+        {{ instruction }}
+      </p>
+    </div>
+
+    <iframe
+      class="w-full mt-2"
+      height="300"
+      [src]="getYoutubeUrl(exercise)"
+      frameborder="0"
+      allowfullscreen
+    ></iframe>
+  </app-expansion>
+
+  <form *ngIf="tracking" [formGroup]="form">
+    <table formArrayName="arr" class="w-full">
+      <thead>
+        <tr>
+          <th>Set</th>
+          <th>Weight</th>
+          <th>Reps</th>
+          <th *ngIf="!readonly">&check;</th>
+          <th *ngIf="!readonly"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr
+          *ngFor="let set of setArray; let setIndex = index"
+          [formGroupName]="setIndex"
+        >
+          <td>{{ setIndex + 1 }}</td>
+          <td><app-input formControlName="weight" type="number" /></td>
+          <td><app-input formControlName="reps" type="number" /></td>
+          <td *ngIf="!readonly">
+            <input
+              type="checkbox"
+              class="w-5 h-5"
+              (change)="onCheck(setIndex, $any($event).target.checked)"
+              [checked]="checked[setIndex]"
+            />
+          </td>
+          <td *ngIf="!readonly">
+            <button
+              class="text-red-500 leading-[0] border border-red-500 h-8 w-8"
+              (click)="onDeleteSet(setIndex)"
+            >
+              X
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <app-button
+      btnClass="!p-0 !mb-0 bg-gray-800 h-[40px] !w-[600px] mt-4 mx-auto block"
+      btnType="black"
+      (click)="onAddSet()"
+      *ngIf="!readonly"
+    >
+      Add set</app-button
+    >
+
+    <p class="text-red-500">{{ error }}</p>
+  </form>
+</div>

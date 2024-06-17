@@ -1,20 +1,11 @@
+<div
+  class="w-screen max-w-[400px] flex flex-col items-center justify-center mx-auto"
+>
+  <h1 class="text-3xl font-semibold">SIGN UP</h1>
 
+  <app-profile-form [submit$]="submit$" />
 
-<div class="w-screen h-[400px] w-[400px] flex flex-col items-center justify-center mx-auto">
- 
-
- <h1 class="text-3xl font-semibold"> SIGN UP</h1>
- 
- <form action="">
-  <app-input placeholder="Email"></app-input>
-  <app-input placeholder="Password" type="password"></app-input>
-  <app-input placeholder="Password Confirm" type="password"></app-input>
-
-  
-  <app-button type="submit" >Submit</app-button>
- </form>
- 
- <a routerLink="/sign-in" class="text-sm underline  w-full text-center"> Sign ip</a>
-
+  <a routerLink="/sign-in" class="text-sm underline w-full text-center">
+    Sign in</a
+  >
 </div>
-

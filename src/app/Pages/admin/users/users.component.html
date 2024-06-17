@@ -1,0 +1,21 @@
+<div class="flex flex-col items-center mt-7 mx-auto space-y-8]">
+  <table class="w-[800px] mt-4">
+    <tr class="text-s px-5">
+      <th class="text-left">Index</th>
+      <th class="text-center">Name</th>
+      <th class="text-center">Email</th>
+      <th class="text-center">Age</th>
+      <th class="text-center">Weight</th>
+      <th class="text-center">Height</th>
+    </tr>
+
+    <tr *ngFor="let user of users; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td class="text-center py-4">{{ user.name }}</td>
+      <td class="text-center py-4">{{ user.email }}</td>
+      <td class="text-center py-4">{{ user.age }}</td>
+      <td class="text-center py-4">{{ user.weight }}</td>
+      <td class="text-center py-4">{{ user.height }}</td>
+    </tr>
+  </table>
+</div>

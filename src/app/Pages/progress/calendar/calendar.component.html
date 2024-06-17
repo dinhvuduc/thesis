@@ -1,0 +1,42 @@
+<div class="flex flex-col space-y-4">
+  <div class="flex items-center justify-center w-fit mx-auto">
+    <app-button btnClass="h-fit px-4 !w-fit !my-0" (click)="onPrevious()"
+      ><</app-button
+    >
+
+    <span class="text-center text-3xl font-bold mx-4">{{
+      viewDateFormat
+    }}</span>
+
+    <app-button btnClass="h-fit px-4 !w-fit !my-0" (click)="onNext()"
+      >></app-button
+    >
+  </div>
+
+  <mwl-calendar-month-view
+    [viewDate]="viewDate"
+    [events]="events"
+    (dayClicked)="onDayClicked($event)"
+  ></mwl-calendar-month-view>
+
+  <div
+    class="border border-black p-4 flex justify-between"
+    *ngIf="trackings.length"
+  >
+    <span>Date: {{ today }}</span>
+
+    <span>Time: {{ time }}</span>
+
+    <span>Volume: {{ volume }}</span>
+  </div>
+
+  <app-exercise
+    *ngFor="let tracking of trackings; let index = index"
+    [index]="index"
+    [exercise]="tracking.exercise"
+    [tracking]="tracking"
+    [readonly]="true"
+  />
+</div>
+
+<p class="text-red-500 text-center">{{ error }}</p>

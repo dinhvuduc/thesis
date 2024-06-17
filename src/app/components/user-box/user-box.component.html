@@ -1,0 +1,35 @@
+<div
+  class="border border-black w-fit h-fit p-4 min-w-[400px] cursor-pointer"
+  *ngIf="user"
+  [routerLink]="['/profile']"
+  tabindex="0"
+  role="button"
+>
+  <div class="flex space-x-4 items-center h-fit w-full">
+    <ng-icon name="remixAccountCircleFill" size="60"></ng-icon>
+
+    <div class="flex flex-col">
+      <h1 class="text-4xl font-bold">{{ user.name }}</h1>
+      <span>{{ user.email }}</span>
+    </div>
+
+    <ng-icon class="!ml-auto" name="remixEdit2Fill" size="32" />
+  </div>
+
+  <div class="w-full bg-gray-500 h-px my-4"></div>
+
+  <div class="grid grid-cols-3 gap-4">
+    <div class="flex flex-col items-center">
+      <span>Age</span>
+      <span>{{ user.age }}</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <span>Weight</span>
+      <span>{{ user.weight }} kg</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <span>Height</span>
+      <span>{{ user.height }} cm</span>
+    </div>
+  </div>
+</div>

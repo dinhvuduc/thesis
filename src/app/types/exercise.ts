@@ -13,4 +13,8 @@ export interface Exercise2{
  equipment: string;
  target: string;
  relatedTarget: string;
+ reps: number;
+ sets: number;
+ video: string;
+ instructions: string[];
 }

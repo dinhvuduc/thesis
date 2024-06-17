@@ -1,0 +1,13 @@
+<div class="flex flex-col shadow-md p-4 bg-white w-[200px]">
+  <app-button
+    btnClass="!min-h-[30px] !h-fit !m-0 !py-2 px-4 w-full"
+    btnType="black"
+    [routerLink]="['/profile']"
+    >Profile</app-button
+  >
+  <app-button
+    btnClass="!min-h-[30px] !h-fit !m-0 !py-2 px-4 w-full"
+    (click)="signout()"
+    >Log out</app-button
+  >
+</div>

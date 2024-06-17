@@ -1,0 +1,20 @@
+<div class="overflow-auto flex flex-col space-y-4" style="height: 65vh">
+  <app-exercise
+    *ngFor="let exercise of exercises; let index = index"
+    [exercise]="exercise"
+    [index]="index"
+    [clickable]="true"
+    [selected]="selected.includes(index)"
+    (choose)="onChooseExercise(index)"
+    [openExpansion]="true"
+  />
+</div>
+
+<app-button
+  btnClass="w-[200px] mx-auto block"
+  (click)="onConfirm()"
+  [disabled]="loading"
+  >Confirm</app-button
+>
+
+<p class="text-red-500 text-center">{{ error }}</p>

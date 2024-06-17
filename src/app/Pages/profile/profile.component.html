@@ -1,0 +1,19 @@
+<div
+  class="w-screen max-w-[400px] flex flex-col items-center justify-center mx-auto"
+  *ngIf="user"
+>
+<div class="mb-8">
+ 
+ <app-user-box />
+</div>
+
+  <app-profile-form
+    [user]="user"
+    [showLabel]="true"
+    [submit$]="submit$"
+    [hasPassword]="false"
+  />
+</div>
+
+<p class="text-red-500 text-center">{{ error }}</p>
+<p class="text-green-500 text-center">{{ status }}</p>

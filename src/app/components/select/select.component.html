@@ -1,4 +1,4 @@
-<select class="w-full bg-black text-white text-center p-3 mt-12"[(ngModel)]="value"> 
+<select class="w-full bg-gray-700 text-white text-2xl text-center p-3 mt-12"[(ngModel)]="value" (change)="onChange()"> 
  <option disabled hidden value="">Please select muscle group</option>
   <option *ngFor="let option of options" [value]="option">{{ option }}</option>
 </select>

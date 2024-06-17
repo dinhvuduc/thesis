@@ -1,0 +1,22 @@
+<div class="flex flex-col w-full">
+  <button class="h-10 w-full bg-gray-500" (click)="opened = !opened">
+    <div class="flex items-baseline justify-center">
+      <span>
+        {{ label }}
+      </span>
+
+      <ng-icon
+        [name]="opened ? 'remixArrowUpSFill' : 'remixArrowDownSFill'"
+        size="20"
+        class="relative -bottom-1"
+      />
+    </div>
+  </button>
+
+  <div
+    class="w-full"
+    [ngClass]="opened ? 'opacity-100 visible h-max' : 'opacity-0 invisible h-0'"
+  >
+    <ng-content />
+  </div>
+</div>

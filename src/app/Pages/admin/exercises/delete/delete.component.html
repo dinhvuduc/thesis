@@ -1,0 +1,14 @@
+<p>Do you want to delete exercise {{ data.name }}?</p>
+
+<div class="flex items-center">
+  <app-button
+    btnType="black"
+    btnClass="!h-10"
+    (click)="onConfirm()"
+    [disabled]="loading"
+    >Yes</app-button
+  >
+  <app-button btnClass="!h-10" (click)="onCancel()">No</app-button>
+</div>
+
+<p class="text-red-500">{{ errorMessage }}</p>

@@ -1,0 +1,48 @@
+<form [formGroup]="form" (submit)="onSubmit()" class="w-full min-w-full">
+  <app-input
+    [showLabel]="showLabel"
+    placeholder="Name"
+    formControlName="name"
+  ></app-input>
+  <app-input
+    [showLabel]="showLabel"
+    placeholder="Email"
+    formControlName="email"
+  ></app-input>
+  <app-input
+    [showLabel]="showLabel"
+    placeholder="Password"
+    type="password"
+    formControlName="password"
+    *ngIf="hasPassword"
+  ></app-input>
+  <app-input
+    [showLabel]="showLabel"
+    placeholder="Password Confirm"
+    type="password"
+    formControlName="confirmPassword"
+    *ngIf="hasPassword"
+  ></app-input>
+  <app-input
+    [showLabel]="showLabel"
+    placeholder="Age"
+    type="number"
+    formControlName="age"
+  ></app-input>
+  <app-input
+    [showLabel]="showLabel"
+    placeholder="Height"
+    type="number"
+    formControlName="height"
+  ></app-input>
+  <app-input
+    [showLabel]="showLabel"
+    placeholder="Weight"
+    type="number"
+    formControlName="weight"
+  ></app-input>
+
+  <app-button type="submit" [disabled]="invalid">Submit</app-button>
+
+  <p class="text-red-500">{{ errorMessage }}</p>
+</form>

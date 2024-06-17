@@ -1,0 +1,18 @@
+<div class="overflow-auto flex flex-col space-y-2" style="height: 65vh">
+  <div *ngFor="let tracking of trackings; let index = index" class="w-full">
+    <app-exercise
+      [index]="index"
+      [exercise]="tracking.exercise"
+      [openExpansion]="true"
+    />
+  </div>
+</div>
+
+<app-button
+  btnClass="w-[200px] mx-auto block"
+  (click)="onConfirm()"
+  [disabled]="loading"
+  >Confirm</app-button
+>
+
+<p class="text-red-500 text-center">{{ error }}</p>

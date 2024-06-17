@@ -4,30 +4,27 @@ import { RouterOutlet } from '@angular/router';
 import { LayoutComponent } from './components/layout/layout.component';
 import { PopupComponent } from './components/poppup/popup.component';
 import { AuthService } from './services/auth.service';
-
+import { MenuComponent } from './components/menu/menu.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule, 
+    CommonModule,
     RouterOutlet,
     LayoutComponent,
-    PopupComponent
-    ],
+    PopupComponent,
+    MenuComponent,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  constructor(private readonly authService:AuthService){}
+  constructor(private readonly authService: AuthService) {}
   title = 'Thesis';
   ngOnInit(): void {
-      const token = localStorage.getItem('token');
-      if(token){
-        this.authService.me(token).subscribe({
-          next:()=>{},
-          error:()=>{}
-        })
-      }
+    this.authService.me().subscribe({
+      error: () => {},
+    });
   }
 }

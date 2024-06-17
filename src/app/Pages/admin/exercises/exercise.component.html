@@ -1,25 +1,43 @@
+<div
+  class="flex flex-col items-center mt-7 mx-auto space-y-8]"
+>
+  <app-button
+    btnClass="px-4 py-2  !w-fit"
+    btnType="black"
+    (click)="onNewExercises()"
+    >Create new exercise</app-button
+  >
+  <table class="w-[800px] mt-4">
+    <tr class="text-s px-5">
+      <th class="text-left">Index</th>
+      <th class="text-center">Name</th>
+      <th class="text-center">Equipment</th>
+      <th class="text-center">Target</th>
+      <th class="text-center">Related Target</th>
+      <th >Actions</th>
+    </tr>
 
-<div class="flex flex-col items-center mt-7 mx-auto space-y-8 w-[var(--landing-page-width)]">
- <app-button btnClass="px-4 py-2  !w-fit" btnType="black" (click)="onNewExercises()" >Create new exercise</app-button>
- <table> 
-  <tr class="text-s px-5">
-   <th>Index</th>
-   <th>Name</th>
-   <th>Equipment</th>
-   <th>Target</th>
-   <th>Related Target</th>
-   <th>Actions</th>
-  </tr>
-  
-  <tr *ngFor="let exercises of exercises; let i = index">
-   <td>{{i+1}}</td>
-   <td>{{exercises.name}}</td>
-   <td>{{exercises.equipment  }}</td>
-   <td>{{exercises.target  }}</td>
-   <td>{{exercises.relatedTarget  }}</td>
-   <td>
-    <app-button btnClass="px-4 !h-10 !leading-none " (click)="onUpdate(exercises)">Update</app-button>
-   </td>
-  </tr>
- </table>
+    <tr *ngFor="let exercises of exercises; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td class="text-center">{{ exercises.name }}</td>
+      <td class="text-center">{{ exercises.equipment }}</td>
+      <td class="text-center">{{ exercises.target }}</td>
+      <td class="text-center">{{ exercises.relatedTarget }}</td>
+      <td>
+       <div class="flex items-center space-x-2">
+        <app-button
+          btnClass="px-4 !h-8 !leading-none !text-base"
+          (click)="onUpdate(exercises)"
+          >Update</app-button
+        >
+        <app-button
+          btnClass="px-4 !h-8 !leading-none !text-base"
+          btnType="black"
+          (click)="onDelete(exercises)"
+          >Delete</app-button
+        >
+       </div>
+      </td>
+    </tr>
+  </table>
 </div>

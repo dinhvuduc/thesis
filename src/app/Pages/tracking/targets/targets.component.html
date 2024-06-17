@@ -1,0 +1,9 @@
+<app-button
+  *ngFor="let target of targets"
+  btnClass="w-fit min-w-[200px]"
+  (click)="onChooseTarget(target)"
+>
+  {{ target }}
+</app-button>
+
+<p class="text-red-500 text-center">{{ error }}</p>
