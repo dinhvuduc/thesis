@@ -17,8 +17,12 @@ export class UserMenuComponent {
 
   signout() {
     this.authService.signout();
-    this.menu.close();
+    this.onCloseMenu();
 
     window.location.reload();
+  }
+
+  onCloseMenu() {
+    this.menu.close();
   }
 }

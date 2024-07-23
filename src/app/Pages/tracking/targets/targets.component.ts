@@ -34,8 +34,6 @@ export class TargetsComponent implements OnInit {
   }
 
   onChooseTarget(target: string) {
-    const type = this.popup.data.type;
-
     this.popup.closePopup();
 
     this.exerciseService.getExercisesByTarget(target).subscribe({

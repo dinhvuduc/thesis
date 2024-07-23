@@ -85,17 +85,18 @@
   <p class="text-red-500 text-center">{{ error }}</p>
 </div>
 
-<div class="fixed bottom-10 right-10 flex flex-col space-y-8">
+<div class="fixed bottom-10 right-10 flex flex-col space-y-8 items-end">
   <app-button
     *ngIf="hasSubmitted && !confirmReset"
     (click)="confirmReset = true"
+    btnClass="!py-4 !my-0 !w-[120px] !h-fit"
     >Reset</app-button
   >
   <app-button *ngIf="confirmReset" btnType="black" (click)="onReset()"
     >Confirm reset</app-button
   >
 
-  <div class="bg-black text-white px-10 py-5 text-4xl font-bold">
+  <div class="bg-black text-white px-5 py-2 text-2xl font-bold">
     Time: {{ timeFormatted }}
   </div>
 </div>
