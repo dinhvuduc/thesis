@@ -87,6 +87,7 @@
               class="w-5 h-5"
               (change)="onCheck(setIndex, $any($event).target.checked)"
               [checked]="checked[setIndex]"
+              [disabled]="saving"
             />
           </td>
           <td *ngIf="!readonly">

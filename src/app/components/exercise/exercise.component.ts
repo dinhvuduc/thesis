@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { Exercise2 } from '../../types/exercise';
 import { NgClass, NgFor, NgIf, UpperCasePipe } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -21,7 +28,7 @@ import {
   remixSettings3Line,
 } from '@ng-icons/remixicon';
 import { MenuService } from '../../services/menu.service';
-import { take } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import { ExpansionComponet } from '../expansion/expansion.component';
 
 @Component({
@@ -42,8 +49,9 @@ import { ExpansionComponet } from '../expansion/expansion.component';
   ],
   viewProviders: [provideIcons({ remixMenuLine })],
 })
-export class ExerciseComponent implements OnInit {
+export class ExerciseComponent implements OnInit, OnDestroy {
   private _tracking: Tracking | undefined;
+  private _sub: Subscription | undefined;
 
   @Input() index: number = 1;
   @Input() exercise: Exercise2 | undefined;
@@ -95,6 +103,7 @@ export class ExerciseComponent implements OnInit {
   form: FormGroup;
   error = '';
   checked: boolean[] = [];
+  saving = false;
 
   constructor(
     private readonly sanitizer: DomSanitizer,
@@ -108,14 +117,17 @@ export class ExerciseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.trackingService.confirm$.subscribe(async () => {
+    this._sub = this.trackingService.confirm$.subscribe(async () => {
       if (!this._tracking) return;
 
-      for (const [i, _]
-        of new Array(this._tracking.sets).fill(0).entries()) {
+      for (const [i, _] of new Array(this._tracking.sets).fill(0).entries()) {
         await this.onCheck(i, true);
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this._sub) this._sub.unsubscribe();
   }
 
   getYoutubeUrl(exercise: Exercise2) {
@@ -145,6 +157,8 @@ export class ExerciseComponent implements OnInit {
   }
 
   async onCheck(index: number, checked: boolean) {
+    this.checked[index] = checked;
+
     return new Promise<void>((resolve, reject) => {
       const group = this.formArr.at(index);
 
@@ -153,6 +167,8 @@ export class ExerciseComponent implements OnInit {
         group.get('reps')?.disable();
 
         if (!this._tracking) return;
+
+        this.saving = true;
 
         this.trackingService
           .saveTrackingProgress(
@@ -163,20 +179,22 @@ export class ExerciseComponent implements OnInit {
           )
           .subscribe({
             next: () => {
+              this.saving = false;
               resolve();
             },
             error: (error) => {
               this.error = error.error?.message ?? error.message;
 
+              this.saving = false;
               reject();
             },
           });
       } else {
         group.get('weight')?.enable();
         group.get('reps')?.enable();
-      }
 
-      this.checked[index] = checked;
+        resolve();
+      }
     });
   }
 

@@ -28,6 +28,7 @@ export class CalendarComponent implements OnInit {
   progresses: Progress[] = [];
   trackings: Tracking[] = [];
   progress: Progress | undefined;
+  selectedDay = dayjs();
 
   constructor(
     private readonly statisticService: StatisticService,
@@ -80,8 +81,11 @@ export class CalendarComponent implements OnInit {
   }
 
   onDayClicked(event?: any) {
+    this.trackings = [];
+    this.selectedDay = dayjs(event?.day?.date);
+    
     this.progress = this.progresses.find((_progress) =>
-      dayjs(_progress.date).isSame(dayjs(event?.day?.date), 'day')
+      dayjs(_progress.date).isSame(this.selectedDay, 'day')
     );
 
     if (!this.progress) return;
@@ -89,8 +93,8 @@ export class CalendarComponent implements OnInit {
     this.trackings = this.progress.trackings as Tracking[];
   }
 
-  get today() {
-    return dayjs().format('DD/MM/YYYY');
+  get dayFormatted() {
+    return this.selectedDay.format('DD/MM/YYYY');
   }
 
   get time() {
